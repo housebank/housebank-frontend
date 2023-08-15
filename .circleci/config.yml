@@ -15,7 +15,7 @@ jobs:
             - node/install-packages:
                 pkg-manager: yarn
             - run:
-                command: npx playwright install
+                command: npx playwright install && sudo npx playwright install-deps
                 name: install playwright
             - run:
                 command: yarn test
