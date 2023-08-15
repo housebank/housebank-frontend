@@ -15,8 +15,8 @@ jobs:
             - node/install-packages:
                 pkg-manager: yarn
             - run:
-                command: install playwright
-                name: npx playwright install
+                command: npx playwright install
+                name: install playwright
             - run:
                 command: yarn test
                 name: Run unit tests
