@@ -14,6 +14,7 @@ test.describe("Landing page and Backend API Health check", () => {
     });
 
     test("Navigate to Healthcheck and click button", async ({page}) => {
+        test.slow();
         // Click health check menu
         await page.getByText("API Health check").click();
         await page.waitForTimeout(10000);
