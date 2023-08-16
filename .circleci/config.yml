@@ -15,19 +15,20 @@ jobs:
             - node/install-packages:
                 pkg-manager: yarn
             - run:
-                command: yarn build
                 name: Build app
-  run_tests:
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.23.1-focal
-    steps:
-      - checkout
-      - run: npm i -D @playwright/test
-      - run: npx playwright install
-      - run: npx playwright install chrome
-      - run:
-          name: Run playwright test
-          command: yarn test
+                command: yarn build
+            - run:
+                name: Install http-server
+                command:  yarn install -g http-server
+            - run:
+                name: install playwright
+                command: npm ci && npx playwright install --with-deps
+            - run:
+                name: Serve React app and run test
+                command: |
+                  nohup http-server ./dist/ -a 127.0.0.1 -p 3000 > /dev/null 2>&1 &
+                  npx wait-on http://127.0.0.1:3000 && npx cypress run
+
   build_docker_image:
     executor: docker/docker
     steps:
@@ -52,6 +53,3 @@ workflows:
   Build_and_deploy_service_to_docker_hub:
     jobs:
       - build_docker_image
-  Run_Playwright_Test:
-    jobs:
-      - run_tests
