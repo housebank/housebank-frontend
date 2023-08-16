@@ -22,7 +22,7 @@ jobs:
                 command:  yarn global add http-server
             - run:
                 name: install playwright
-                command: npm ci && npx playwright install --with-deps
+                command: yarn install --frozen-lockfile && npx playwright install --with-deps
             - run:
                 name: Serve React app and run test
                 command: |
