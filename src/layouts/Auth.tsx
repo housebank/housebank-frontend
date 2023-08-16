@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import {Layout} from "antd";
 import AppHeader from "../components/header";
-import {Content, Footer, Header} from "antd/lib/layout/layout";
+import {Content, Footer} from "antd/lib/layout/layout";
 
 interface AuthProps {
   children?: React.ReactNode;

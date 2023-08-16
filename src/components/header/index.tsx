@@ -42,7 +42,7 @@ const menuItems : MenuProps['items'] = [
         icon: null,
     }
 ];
-const AppHeader = ({})=>{
+const AppHeader = ()=>{
     const [current, setCurrent] = useState('home');
     const onClick: MenuProps['onClick'] = (e) => {
         // @ts-ignore
