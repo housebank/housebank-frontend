@@ -16,6 +16,7 @@ test.describe("Landing page and Backend API Health check", () => {
     test("Navigate to Healthcheck and click button", async ({page}) => {
         // Click health check menu
         await page.getByText("API Health check").click();
+        await page.waitForTimeout(10000);
         //Click the health check button
         await page.getByTestId("health-check-button").click();
         await expect(page.locator("ul > li")).toContainText(["OK", "OK", "OK", "OK", "OK"]);
