@@ -18,7 +18,7 @@ jobs:
                 name: Build app
                 command: yarn build
             - run:
-                name: Install http-server
+                name: Install wait on
                 command:  yarn global add wait-on
             - run:
                 name: Install http-server
@@ -30,7 +30,7 @@ jobs:
                 name: Serve React app and run test
                 command: |
                   nohup http-server ./dist/ -a 127.0.0.1 -p 3000 > /dev/null 2>&1 &
-                  npx wait-on http://127.0.0.1:3000 && yarn test
+                  wait-on http://127.0.0.1:3000 && yarn test
 
   build_docker_image:
     executor: docker/docker
