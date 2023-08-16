@@ -29,7 +29,7 @@ jobs:
             - run:
                 name: Serve React app and run test
                 command: |
-                  nohup http-server ./dist/ -a 127.0.0.1 -p 3000 > /dev/null 2>&1 &
+                  nohup http-server ./build/ -a 127.0.0.1 -p 3000 > /dev/null 2>&1 &
                   wait-on http://127.0.0.1:3000 && yarn test
 
   build_docker_image:
