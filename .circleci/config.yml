@@ -15,14 +15,19 @@ jobs:
             - node/install-packages:
                 pkg-manager: yarn
             - run:
-                command: npx playwright install && sudo npx playwright install-deps
-                name: install playwright
-            - run:
-                command: yarn test
-                name: Run Playwright tests
-            - run:
                 command: yarn build
                 name: Build app
+  run_tests:
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.23.1-focal
+    steps:
+      - checkout
+      - run: yarn i -D @playwright/test
+      - run: npx playwright install
+      - run: npx playwright install chrome
+      - run:
+          name: Run playwright test
+          command: yarn test
   build_docker_image:
     executor: docker/docker
     steps:
@@ -47,3 +52,6 @@ workflows:
   Build_and_deploy_service_to_docker_hub:
     jobs:
       - build_docker_image
+  Run_Playwright_Test:
+    jobs:
+      - run_tests
