@@ -3,7 +3,7 @@ import {test, expect} from '@playwright/test';
 test.describe("Landing page and Backend API Health check", () => {
 
     test.beforeEach(async ({page}, testInfo)=>{
-      await page.goto("http://127.0.0.1:3000");
+      await page.goto("http://localhost:3000");
     })
 
     test("Home page loads successfully", async ({page}) => {
