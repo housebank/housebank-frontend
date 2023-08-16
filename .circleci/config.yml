@@ -19,7 +19,10 @@ jobs:
                 command: yarn build
             - run:
                 name: Install http-server
-                command:  yarn global add http-server
+                command:  yarn global add wait-on
+            - run:
+                name: Install http-server
+                command: yarn global add http-server
             - run:
                 name: install playwright
                 command: yarn install --frozen-lockfile && npx playwright install --with-deps
@@ -27,7 +30,7 @@ jobs:
                 name: Serve React app and run test
                 command: |
                   nohup http-server ./dist/ -a 127.0.0.1 -p 3000 > /dev/null 2>&1 &
-                  npx wait-on http://127.0.0.1:3000 && npx cypress run
+                  npx wait-on http://127.0.0.1:3000 && yarn test
 
   build_docker_image:
     executor: docker/docker
