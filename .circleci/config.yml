@@ -19,7 +19,10 @@ jobs:
                 name: install playwright
             - run:
                 command: yarn test
-                name: Run unit tests
+                name: Run Playwright tests
+            - run:
+                command: yarn build
+                name: Build app
   build_docker_image:
     executor: docker/docker
     steps:
