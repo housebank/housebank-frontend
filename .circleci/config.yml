@@ -22,7 +22,7 @@ jobs:
       - image: mcr.microsoft.com/playwright:v1.23.1-focal
     steps:
       - checkout
-      - run: yarn i -D @playwright/test
+      - run: npm i -D @playwright/test
       - run: npx playwright install
       - run: npx playwright install chrome
       - run:
