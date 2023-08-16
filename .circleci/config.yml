@@ -19,7 +19,7 @@ jobs:
                 command: yarn build
             - run:
                 name: Install http-server
-                command:  yarn install -g http-server
+                command:  yarn global add http-server
             - run:
                 name: install playwright
                 command: npm ci && npx playwright install --with-deps
